@@ -1,0 +1,15 @@
+{
+  "name": "node-emitter",
+  "private": true,
+  "dependencies": {
+    "restler": ">= 3.x.x",
+    "underscore": "latest",
+    "onoff":   "0.3.x",
+    "node-wifiscanner": "0.0.1",
+    "chainof": "latest"
+  },
+  "version": "0.0.3",
+  "scripts": {
+    "start": "node app.js"
+  }
+}
