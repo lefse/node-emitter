@@ -23,7 +23,7 @@ function buildChain(){
     chain.clear();
     chain.use(in_wifi.check);
     chain.use(in_flow.check);
-    // chain.use(in_temp.check);
+    chain.use(in_temp.check);
     chain.use(out_http.sendGet);
     chain.use(log);
 }
