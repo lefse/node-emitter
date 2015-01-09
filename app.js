@@ -15,9 +15,9 @@ var default_payload = {
 
 var out_http = require('./lib/out/skawtus_http'),
     out_mqtt = require('./lib/out/skawtus_mqtt'),
-    in_wifi = require('./lib/in/wifi_sensor'),
-    in_flow = require('./lib/in/flow_sensor'),
-    in_temp = require('./lib/in/w1_temp');
+    in_wifi = require('./lib/in/wifi/wifi_sensor'),
+    in_flow = require('./lib/in/gpio/flow-sensor/YF-S201.js'),
+    in_temp = require('./lib/in/one-wire/temperature/DS18B20.js');
 
 function buildChain(){
     chain.clear();
