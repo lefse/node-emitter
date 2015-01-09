@@ -15,6 +15,7 @@ var default_payload = {
 
 var out_http = require('./lib/out/skawtus_http'),
     out_mqtt = require('./lib/out/skawtus_mqtt'),
+    out_local_json = require('./lib/out/local_json'),
     in_wifi = require('./lib/in/wifi_sensor'),
     in_flow = require('./lib/in/flow_sensor'),
     in_temp = require('./lib/in/w1_temp');
@@ -25,6 +26,7 @@ function buildChain(){
     chain.use(in_flow.check);
     chain.use(in_temp.check);
     chain.use(out_http.sendGet);
+    chain.use(out_local_json.write);
     chain.use(log);
 }
 //------------------------------------------------//
