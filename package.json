@@ -7,7 +7,7 @@
     "onoff":   "0.3.x",
     "node-wifiscanner": "0.0.1",
     "serialport": "1.4.10",
-    "nmea-0183": "0.0.7",
+    "nmea": "0.0.7",
     "chainof": "latest"
   },
   "version": "0.0.3",
