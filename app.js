@@ -15,10 +15,11 @@ var default_payload = {
 
 var out_http = require('./lib/out/skawtus_http'),
     out_mqtt = require('./lib/out/skawtus_mqtt'),
+    out_local_json = require('./lib/out/local_json'),    
     in_wifi = require('./lib/in/wifi/wifi_sensor'),
     in_flow = require('./lib/in/gpio/flow-sensor/YF-S201.js'),
-    in_temp = require('./lib/in/one-wire/temperature/DS18B20.js');
-    in_gps = require('./lib/in/serial/gps/nmea-0183.js')
+    in_temp = require('./lib/in/one-wire/temperature/DS18B20.js'),
+    in_gps = require('./lib/in/serial/gps/nmea-0183.js');    
 
 function buildChain(){
     chain.clear();
@@ -27,6 +28,7 @@ function buildChain(){
     chain.use(in_temp.check);
     chain.use(in_gps.check);    
     chain.use(out_http.sendGet);
+    chain.use(out_local_json.write);
     chain.use(log);
 }
 //------------------------------------------------//
