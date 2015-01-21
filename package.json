@@ -8,7 +8,8 @@
     "node-wifiscanner": "0.0.1",
     "serialport": "1.4.10",
     "nmea": "0.0.7",
-    "chainof": "latest"
+    "chainof": "latest",
+    "node-internal-pubsub": "1.0.x"
   },
   "version": "0.0.3",
   "scripts": {
