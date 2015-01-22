@@ -9,6 +9,7 @@
     "serialport": "1.4.10",
     "nmea": "0.0.7",
     "chainof": "latest",
+    "mqtt": "latest",
     "node-internal-pubsub": "1.0.x"
   },
   "version": "0.0.3",
