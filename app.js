@@ -1,6 +1,8 @@
-var utils  = require('./lib/utils'),
-    pubsub = require('node-internal-pubsub');
+var utils  = require('./lib/utils');
 
+pubsub = require('node-internal-pubsub');
+publisher  = pubsub.createPublisher();
+    
 var default_payload = {
   device: {
     type: "ee15bcea-c04e-4152-91cf-fd6c90a79538",     //skawtus generated device guid
@@ -21,8 +23,7 @@ var in_wifi = require('./lib/in/wifi/wifi_sensor'),
     out_local_json = require('./lib/out/log/local_json'),
     out_relay = require('./lib/out/relay/gpio_relay.js');    
 
-var publisher  = pubsub.createPublisher(),
-    sub_wifi = pubsub.createSubscriber(),
+var sub_wifi = pubsub.createSubscriber(),
     sub_temp = pubsub.createSubscriber(),
     sub_flow = pubsub.createSubscriber(),
     sub_gps = pubsub.createSubscriber(),
@@ -48,6 +49,7 @@ sub_flow.on('message', function(channel, message) {
 });
 sub_gps.on('message', function(channel, message) {
   //console.log("Do something with :" + channel, message);
+  //console.log(message);
 });
 sub_mqtt.on('message', function(channel, message) {
     if(message.topic == "skawtus/usr/devices/relay/value/set") {
@@ -61,19 +63,23 @@ sub_mqtt.on('message', function(channel, message) {
         }
     }
 });
-sub_zigbee.on('message', function(channel, message) {
-  console.log(message);
-});
 
+try {
+  sub_zigbee.on('message', function(channel, message) {
+      //console.log(message);
+  });
+} catch(ex) {
+  console.log("subscribe error zigbee message");
+}
 // Check data from each sensor and publish to the channel.
 function checkState(data){
 
-  in_wifi.check(data, publisher, function(data, publisher) {});
-  in_flow.check(data, publisher, function(data, publisher) {});
-  in_gps.check(data, publisher, function(data, publisher) {});
-  in_temp.check(data, publisher, function(data, publisher) {});
+  in_wifi.check(data, function(data) {});
+  in_flow.check(data, function(data) {});
+  in_gps.check(data, function(data) {});
+  in_temp.check(data, function(data) {});
   inout_mqtt.publish(data);
-  inout_zigbee.info(data, function(data) {});
+  inout_zigbee.APIsend(data, function(data) {});
 
   setTimeout(checkState, default_payload.device.period,{});
 }

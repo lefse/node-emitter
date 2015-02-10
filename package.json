@@ -10,7 +10,8 @@
     "nmea": "0.0.7",
     "chainof": "latest",
     "mqtt": "latest",
-    "node-internal-pubsub": "1.0.x"
+    "node-internal-pubsub": "1.0.x",
+    "struct": "latest"
   },
   "version": "0.0.3",
   "scripts": {
